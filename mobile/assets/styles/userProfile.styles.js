@@ -1,0 +1,111 @@
+import { StyleSheet } from "react-native";
+import COLORS from "../../constants/colors";
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.background,
+    padding: 16,
+    paddingBottom: 0,
+  },
+  profileHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.cardBackground,
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  profileImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginRight: 16,
+  },
+  profileInfo: {
+    flex: 1,
+  },
+  username: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: COLORS.textPrimary,
+    marginBottom: 4,
+  },
+  email: {
+    fontSize: 14,
+    color: COLORS.textSecondary,
+    marginBottom: 4,
+  },
+  logoutButton: {
+    backgroundColor: COLORS.primary,
+    borderRadius: 12,
+    padding: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 24,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  logoutText: {
+    color: COLORS.white,
+    fontWeight: "600",
+    marginLeft: 8,
+  },
+  styleOne: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 12,
+    marginBottom: 24,
+  },
+  styleTwo: {
+    flex: 1,
+    backgroundColor: COLORS.cardBackground,
+    padding: 16,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  buttonTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: COLORS.textPrimary,
+    marginBottom: 4,
+  },
+  input: {
+    backgroundColor: COLORS.cardBackground,
+    borderRadius: 8,
+    padding: 12,
+    marginTop: 8,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    color: COLORS.textPrimary,
+  },
+  
+  button: {
+    backgroundColor: COLORS.primary,
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+});
+
+export default styles;
