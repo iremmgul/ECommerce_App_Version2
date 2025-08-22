@@ -8,29 +8,27 @@ const useFavoriteStore = create((set, get) => ({
   version: 0,
   
   // Favorileri yükle
-  loadFavorites: async (userId) => {
-    try {
-      const token = await AsyncStorage.getItem("access_token");
-      if (!token) return;
+loadFavorites: async (userId) => {
+  try {
+    const token = await AsyncStorage.getItem("access_token");
+    if (!token) return;
 
-      const response = await axios.get(`${API_URL}/favorite/user/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      
-      const favoriteIds = new Set(response.data.map(item => item.productId));
-      set({ favorites: favoriteIds });
-    } catch (error) {
-      console.error('Favoriler yüklenirken hata:', error);
-    }
-  },
+    const response = await axios.get(`${API_URL}/favorite/user/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    
+    const favoriteIds = new Set(response.data.map(item => item.id));
+    
+    set({ favorites: favoriteIds });
+  } catch (error) {
+    console.error('Favoriler yüklenirken hata:', error);
+  }
+},
 
   // Favori durumunu kontrol et
   isFavorite: (productId) => {
     return get().favorites.has(productId);
   },
-
-  // Favori ekle/çıkar
-  // favoriteStore.js içindeki toggleFavorite fonksiyonunu değiştirin:
 
 toggleFavorite: async (userId, productId) => {
   const { favorites } = get();
@@ -61,8 +59,8 @@ toggleFavorite: async (userId, productId) => {
     } else {
       // ADD FAVORITE  
       await axios.post(`${API_URL}/favorite`, {
-        userId: userId.toString(),        // String olarak gönder
-        productId: productId.toString()   // String olarak gönder
+        userId: userId.toString(),        
+        productId: productId.toString()   
       }, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -84,16 +82,3 @@ toggleFavorite: async (userId, productId) => {
 }));
 
 export default useFavoriteStore;
-
-/*
-import { create } from 'zustand';
-
-const useFavoriteStore = create((set) => ({
-    favoritesVersion: 0,
-    incrementVersion: () =>
-      set((state) => ({ favoritesVersion: state.favoritesVersion + 1 })),
-  }));
-  
-
-export default useFavoriteStore;
-*/
