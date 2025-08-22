@@ -46,6 +46,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+
         };
     });
 
@@ -85,7 +86,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    // Prod’da HTTP -> HTTPS yönlendirmesi
+    // Prod’da HTTP -> HTTPS yönlendirmesié
     app.UseHttpsRedirection();
 }
 
