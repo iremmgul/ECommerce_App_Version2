@@ -56,22 +56,9 @@ export default function ProductDetailScreen() {
           <FavoriteButton productId={product.id} />
         </View>
   
-        
-        <View style={styles.badgeContainer}>
-          {product.freeShipping && (
-            <Text style={[styles.badge, { backgroundColor: "#A9A9A9" }]}>Kargo Bedava</Text>
-          )}
-          {product.sameDayShipping && (
-            <Text style={[styles.badge, { backgroundColor: "#32CD32" }]}>Bugün Kargoda</Text>
-          )}
-          {product.creditEligible && (
-            <Text style={[styles.badge, { backgroundColor: "#FFD700", color: "#000" }]}>
-              Krediye Uygun
-            </Text>
-          )}
-        </View>
-  
         <Text style={styles.productName}>{product.name}</Text>
+
+        <Text style={styles.productDescription}>{product.description}</Text>
   
         <Text style={styles.price}>
           {product.discountedPrice?.toFixed(2) || product.price} TL
@@ -88,6 +75,7 @@ export default function ProductDetailScreen() {
         <TouchableOpacity>
           <CartButton productId={id} style={styles.addToCartButton} />
         </TouchableOpacity>
+
       </View>
     </ScrollView>
   );

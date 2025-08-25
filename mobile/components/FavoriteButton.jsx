@@ -26,7 +26,7 @@ const FavoriteButton = ({ productId }) => {
       <Icon
         name={isProductFavorite ? "heart" : "heart-o"}
         size={24}
-        color={isProductFavorite ? "red" : "gray"}
+        color={isProductFavorite ? "red" : "darkblue"}
       />
     </TouchableOpacity>
   );
