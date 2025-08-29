@@ -35,6 +35,9 @@ namespace ECommerceApi.Models
         public ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
         public ICollection<Cart> Carts { get; set; } = new List<Cart>();
 
+        public ICollection<ProductCategory> ProductCategories { get; set; } = new List<ProductCategory>();
+        public ICollection<ProductReview> Reviews { get; set; } = new List<ProductReview>();
+
     }
 }
 
