@@ -21,6 +21,30 @@ expo-env.d.ts
 # Metro
 .metro-health-check*
 
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+ECommerceApi/.vs/
+ECommerceApi/bin/
+ECommerceApi/obj/
+
+
+# Build
+bin/
+obj/
+
+# Paketler
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
 # debug
 npm-debug.*
 yarn-debug.*

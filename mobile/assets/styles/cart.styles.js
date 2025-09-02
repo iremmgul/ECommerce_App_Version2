@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 36,
     fontWeight: "bold",
-    color: COLORS.textPrimary,
+    color: COLORS.darkBlue,
     marginBottom: 20,
     textAlign: "center",
   },
@@ -41,20 +41,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "700",
-    color: COLORS.textPrimary,
+    color: COLORS.darkBlue,
     marginBottom: 4,
   },
   price: {
     fontSize: 18,
     fontWeight: "bold",
-    color: COLORS.primary,
-    marginBottom: 4,
+    color: COLORS.lightBlue,
+    marginBottom: 2,
   },
   rate: {
     fontSize: 14,
-    color: COLORS.textSecondary,
+    color: COLORS.lightBlue,
     marginBottom: 8,
   },
   button: {

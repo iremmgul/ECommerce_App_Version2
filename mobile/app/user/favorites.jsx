@@ -34,8 +34,6 @@ export default function Favorites() {
           setLoading(false);
           return;
         }
-
-        console.log("Favoriler çekiliyor...");
         
         // Bu endpoint çalışıyor, bunu kullan
         const res = await axios.get(`${API_URL}/favorite/user/${userId}`, {

@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#cccccc",
   },
   notInCart: {
-    backgroundColor: "#FFA726",
+    backgroundColor: "#191970",
   },
   buttonText: {
     color: "#ffffff",

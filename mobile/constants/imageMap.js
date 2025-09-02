@@ -51,4 +51,4 @@ const imageMap = {
     50: require("../assets/images/product50.png"),
   };
   
-  export default imageMap;  
+  export default imageMap;

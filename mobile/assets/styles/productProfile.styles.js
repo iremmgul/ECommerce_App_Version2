@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
   },
   productDescription: {
     fontSize: 14,
-    fontWeight: "700",
-    color: COLORS.darkBlue,
+    fontWeight: "400",
+    color: COLORS.lightBlue,
     marginBottom: 8,
   },
   price: {
@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
   },
   installment: {
     fontSize: 14,
-    color: COLORS.darkBlue,
+    color: COLORS.lightBlue,
     marginBottom: 12,
   },
   rating: {
     fontSize: 14,
-    color: COLORS.darkBlue,
+    color: COLORS.lightBlue,
     marginBottom: 16,
   },
   addToCartButton: {

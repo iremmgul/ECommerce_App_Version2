@@ -17,7 +17,7 @@ export default StyleSheet.create({
   searchInput: {
     height: 40,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: COLORS.lightBlue,
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 16,
@@ -43,13 +43,13 @@ export default StyleSheet.create({
   name: {
     fontSize: 14,
     fontWeight: "bold",
-    color: COLORS.text,
+    color: COLORS.darkBlue,
     marginBottom: 4,
     textAlign: "center",
   },
   price: {
     fontSize: 13,
-    color: COLORS.primary,
+    color: COLORS.lightBlue,
     textAlign: "center",
   },
   imagePlaceholder: {

@@ -74,35 +74,27 @@ export default function UserProfile() {
       </View>
 
       <View
-        style={styles.styleOne}
+        style={styles.boxLayoutStyle}
       >
         <TouchableOpacity
-          style={styles.styleTwo}
+          style={styles.boxStyle}
           onPress={() => router.push("/user/card")}
         >
-          <Ionicons name="cube-outline" size={24} color={COLORS.primary} />
+          <Ionicons name="cube-outline" size={24} color={COLORS.darkBlue} />
           <Text
-            style={{
-              marginTop: 8,
-              color: COLORS.textPrimary,
-              fontWeight: "600",
-            }}
+            style={styles.boxTitle}
           >
             My Card
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.styleTwo}
+          style={styles.boxStyle}
           onPress={() => router.push("/user/favorites")}
         >
-          <Ionicons name="heart-outline" size={24} color={COLORS.primary} />
+          <Ionicons name="heart-outline" size={24} color={COLORS.darkBlue} />
           <Text
-            style={{
-              marginTop: 8,
-              color: COLORS.textPrimary,
-              fontWeight: "600",
-            }}
+            style={styles.boxTitle}
           >
             My Favorites
           </Text>
@@ -120,9 +112,9 @@ export default function UserProfile() {
       />
       <TouchableOpacity
         onPress={handleChangePassword}
-        style={styles.logoutButton}
+        style={styles.updateButton}
       >
-        <Text style={styles.logoutText}>Update Password</Text>
+        <Text style={styles.updateText}>Update Password</Text>
       </TouchableOpacity>
     </ScrollView>
   );

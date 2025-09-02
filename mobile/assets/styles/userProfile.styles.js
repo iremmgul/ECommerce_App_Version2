@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.background,
     padding: 16,
-    paddingBottom: 0,
   },
   profileHeader: {
     flexDirection: "row",
@@ -33,18 +32,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   username: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "700",
-    color: COLORS.textPrimary,
+    color: COLORS.darkBlue,
     marginBottom: 4,
   },
   email: {
     fontSize: 14,
-    color: COLORS.textSecondary,
+    color: COLORS.lightBlue,
     marginBottom: 4,
   },
-  logoutButton: {
-    backgroundColor: COLORS.primary,
+  updateButton: {
+    backgroundColor: COLORS.darkBlue,
     borderRadius: 12,
     padding: 12,
     flexDirection: "row",
@@ -57,21 +56,21 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  logoutText: {
+  updateText: {
     color: COLORS.white,
     fontWeight: "600",
     marginLeft: 8,
   },
-  styleOne: {
+  boxLayoutStyle: {
     flexDirection: "row",
     justifyContent: "space-between",
     gap: 12,
     marginBottom: 24,
   },
-  styleTwo: {
+  boxStyle: {
     flex: 1,
     backgroundColor: COLORS.cardBackground,
-    padding: 16,
+    padding: 12,
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
@@ -83,10 +82,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.border,
   },
+  boxTitle:{
+    marginTop: 8,
+    color: COLORS.lightBlue,
+    fontWeight: "600",
+  },
   buttonTitle: {
     fontSize: 16,
     fontWeight: "600",
-    color: COLORS.textPrimary,
+    color: COLORS.darkBlue,
     marginBottom: 4,
   },
   input: {
@@ -96,15 +100,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 20,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: COLORS.lightBlue,
     color: COLORS.textPrimary,
-  },
-  
-  button: {
-    backgroundColor: COLORS.primary,
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
   },
 });
 
