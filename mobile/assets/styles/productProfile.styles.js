@@ -56,19 +56,15 @@ const styles = StyleSheet.create({
     color: COLORS.lightBlue,
     marginBottom: 16,
   },
-  addToCartButton: {
-    height: 35,
-    backgroundColor: COLORS.primary,
-    marginBottom: 15,
-    padding: 14,
-    borderRadius: 10,
-    alignItems: "center",
-  },
   favoriteWrapper: {
     position: "absolute",
     top: 15,
     right: 12,
     zIndex: 2,
+  },
+  reviewTitle: {
+    fontSize: 20,
+    color: COLORS.darkBlue,
   },  
   
 });
