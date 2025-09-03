@@ -1,18 +1,23 @@
-﻿namespace ECommerceApi.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+public class ProductReview
 {
-    public class ProductReview
-    {
-        public int Id { get; set; }
 
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
+    [Column("id")]
+    public int Id { get; set; }
 
-        public int UserId { get; set; }
-        public User User { get; set; }
+    [Column("product_id")]
+    public int ProductId { get; set; }
 
-        public int Rating { get; set; }
-        public string Comment { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    }
+    [Column("user_id")]
+    public int UserId { get; set; }
 
+    [Column("rating")]
+    public int Rating { get; set; }
+
+    [Column("comment")]
+    public string Comment { get; set; }
+
+    [Column("created_at")]
+    public DateTime CreatedAt { get; set; }
 }

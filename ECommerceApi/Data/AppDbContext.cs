@@ -26,7 +26,10 @@ namespace ECommerceApi.Data
             modelBuilder.Entity<User>().ToTable("Users", "public");
             modelBuilder.Entity<Product>().ToTable("products", "public");
             modelBuilder.Entity<Favorite>().ToTable("favorites", "public");
-            modelBuilder.Entity<Cart>().ToTable("carts", "public"); 
+            modelBuilder.Entity<Cart>().ToTable("carts", "public");
+            modelBuilder.Entity<Category>().ToTable("category", "public");
+            modelBuilder.Entity<ProductCategory>().ToTable("product_category", "public");
+            modelBuilder.Entity<ProductReview>().ToTable("product_review", "public");
 
             // Favorite - Product ilişkisi
             modelBuilder.Entity<Favorite>()
@@ -56,9 +59,39 @@ namespace ECommerceApi.Data
                 .HasForeignKey(c => c.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            
+            modelBuilder.Entity<ProductReview>(entity =>
+            {
+                entity.ToTable("product_review"); // tablo adı doğru olsun
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id)
+                      .HasColumnName("id"); // burada küçük harfe mapliyoruz
+
+                entity.Property(e => e.ProductId)
+                      .HasColumnName("product_id");
+
+                entity.Property(e => e.UserId)
+                      .HasColumnName("user_id");
+
+                entity.Property(e => e.Comment)
+                      .HasColumnName("comment");
+
+                entity.Property(e => e.Rating)
+                      .HasColumnName("rating");
+
+                entity.Property(e => e.CreatedAt)
+                      .HasColumnName("created_at");
+            });
+
+
             // ProductReview - Product ilişkisi
             modelBuilder.Entity<ProductCategory>()
             .HasKey(pc => new { pc.ProductId, pc.CategoryId });
+
+
+
+
         }
     }
 }

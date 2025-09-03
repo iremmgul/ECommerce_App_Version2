@@ -33,10 +33,11 @@ export default function ProductDetailScreen() {
     try {
       setReviewsLoading(true);
 
-      const response = await axios.get(`${API_URL}/products/${id}`);
+      const response = await axios.get(`${API_URL}/products/${id}/reviews`);
 
       // Backend'inizin hangi formatta döndürdüğüne göre ayarlayın:
-      setReviews(response.data.reviews); // veya response.data.reviews
+      console.log(response.data);
+      setReviews(response.data); // veya response.data.reviews
     } catch (error) {
       console.error("Yorumlar alınamadı:", error);
       setReviews([]); // Hata durumunda boş array
@@ -93,24 +94,30 @@ export default function ProductDetailScreen() {
           ⭐ {product.rating} {product.rate}
         </Text>
 
-        <Text style={styles.reviewTitle}>
-          Reviews ({reviews.length}) {/* ✅ Yorum sayısını göster */}
-        </Text>
+       {reviewsLoading ? (
+  <ActivityIndicator size="small" color="#ff6f00" />
+) : reviews.length > 0 ? (
+  <FlatList
+    data={reviews}
+    renderItem={({ item }) => (
+      <ReviewCard
+        review={{
+          id: item.id,
+          userName: item.userName,
+          rating: item.rating,
+          comment: item.comment,
+          createdAt: item.createdAt,
+        }}
+      />
+    )}
+    keyExtractor={(item) => item.id.toString()}
+    scrollEnabled={false}
+    style={styles.reviewsList}
+  />
+) : (
+  <Text style={styles.noReviews}>Henüz yorum bulunmuyor.</Text>
+)}
 
-        {/* ✅ Reviews loading state'i ekleyin */}
-        {reviewsLoading ? (
-          <ActivityIndicator size="small" color="#ff6f00" />
-        ) : reviews.length > 0 ? (
-          <FlatList
-            data={reviews}
-            renderItem={({item}) => <ReviewCard review={item} />}
-            keyExtractor={(item) => item.id.toString()}
-            scrollEnabled={false} // ✅ İç scroll'u kapatın, dış ScrollView kullanın
-            style={styles.reviewsList} // ✅ Style ekleyin
-          />
-        ) : (
-          <Text style={styles.noReviews}>Henüz yorum bulunmuyor.</Text> // ✅ Boş state
-        )}
   
         <TouchableOpacity>
           <CartButton productId={id}  />

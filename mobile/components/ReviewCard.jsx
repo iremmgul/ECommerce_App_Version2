@@ -1,3 +1,6 @@
+import { Image, Text, View } from "react-native";
+import styles from "../assets/styles/reviewCard.styles";
+
 const ReviewCard = ({ review }) => {
   return (
     <View style={styles.reviewContainer}>
@@ -21,3 +24,5 @@ const ReviewCard = ({ review }) => {
     </View>
   );
 };
+
+export default ReviewCard;

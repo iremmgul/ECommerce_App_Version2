@@ -56,5 +56,37 @@ namespace ECommerceApi.Controllers
                 currentPage = page
             });
         }
+
+        //GET /products/{id}/reviews
+        [HttpGet("{id}/reviews")]
+        public async Task<IActionResult> GetProductReviews(int id)
+        {
+            try
+            {
+                var reviews = await _context.ProductReviews
+                    .Where(r => r.ProductId == id)
+                    .Join(_context.Users,
+                          review => review.UserId,
+                          user => user.Id,
+                          (review, user) => new
+                          {
+                              id = review.Id,
+                              productId = review.ProductId,
+                              userId = review.UserId,
+                              userName = user.Username,
+                              rating = review.Rating,
+                              comment = review.Comment,
+                              createdAt = review.CreatedAt
+                          })
+                    .OrderByDescending(r => r.createdAt)
+                    .ToListAsync();
+
+                 return Ok(reviews);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Yorumlar alınırken hata oluştu" });
+            }
+        }
     }
 }
