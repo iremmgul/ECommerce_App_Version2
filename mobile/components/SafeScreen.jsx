@@ -15,7 +15,7 @@ export default SafeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF3E0", 
+    backgroundColor: "#fcd5ce", 
     paddingTop: -15,
     paddingBottom: -20
   },

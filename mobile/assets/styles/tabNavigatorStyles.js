@@ -14,7 +14,8 @@ export const tabNavigatorStyles = StyleSheet.create({
     left: 20,
     right: 20,
     elevation: 8,
-    backgroundColor: '#ffcc80', // Modern turuncu/sarı renk
+    // backgroundColor: '#ffcc80', // Modern turuncu/sarı renk
+    backgroundColor: '#ffe5d9',
     borderRadius: 0,
     height: 60,
     paddingTop: 10,

@@ -1,18 +1,18 @@
-// styles.js
 import { StyleSheet } from "react-native";
+import COLORS from "../../constants/colors.js";
 
 const styles = StyleSheet.create({
   reviewContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.reviewColor,
     borderRadius: 10,
     padding: 15,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    marginVertical: 4,
+    marginHorizontal: 0,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
-    elevation: 3, // Android için gölge
+    elevation: 3,
   },
   userInfo: {
     flexDirection: "row",

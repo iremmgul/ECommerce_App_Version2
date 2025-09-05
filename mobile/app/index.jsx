@@ -9,7 +9,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../assets/images/logo.png')}
+        source={require('../assets/images/logoDarkBlue.png')}
         style={styles.logo}
         resizeMode="contain"
       />

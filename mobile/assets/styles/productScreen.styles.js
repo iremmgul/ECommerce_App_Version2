@@ -15,6 +15,7 @@ export default StyleSheet.create({
     paddingBottom: 16,
   },
   searchInput: {
+    color: COLORS.lightBlue,
     height: 40,
     borderWidth: 1,
     borderColor: COLORS.lightBlue,
