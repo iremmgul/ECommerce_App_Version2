@@ -28,17 +28,29 @@ namespace ECommerceApi.Controllers
             return Ok(product);
         }
 
-        // GET /products?search=...&page=...&limit=...
+        // GET /products?search=...&page=...&limit=...&categoryId=...
         [HttpGet]
-        public async Task<IActionResult> GetProducts([FromQuery] string? search, [FromQuery] int page = 1, [FromQuery] int limit = 5)
+        public async Task<IActionResult> GetProducts(
+            [FromQuery] string? search,
+            [FromQuery] int page = 1,
+            [FromQuery] int limit = 5,
+            [FromQuery] int? categoryId = null)
         {
             var query = _context.Products.AsQueryable();
 
+            // 🔍 Arama filtresi
             if (!string.IsNullOrEmpty(search))
             {
                 query = query.Where(p =>
                     EF.Functions.ILike(p.Name, $"{search}%") ||
                     EF.Functions.ILike(p.Description, $"{search}%"));
+            }
+
+            // 📂 Kategori filtresi
+            if (categoryId.HasValue)
+            {
+                query = query.Where(p =>
+                    p.ProductCategories.Any(pc => pc.CategoryId == categoryId.Value));
             }
 
             var totalCount = await query.CountAsync();
@@ -57,7 +69,7 @@ namespace ECommerceApi.Controllers
             });
         }
 
-        //GET /products/{id}/reviews
+        // GET /products/{id}/reviews
         [HttpGet("{id}/reviews")]
         public async Task<IActionResult> GetProductReviews(int id)
         {
@@ -81,9 +93,9 @@ namespace ECommerceApi.Controllers
                     .OrderByDescending(r => r.createdAt)
                     .ToListAsync();
 
-                 return Ok(reviews);
+                return Ok(reviews);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, new { message = "Yorumlar alınırken hata oluştu" });
             }

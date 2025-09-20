@@ -60,4 +60,25 @@ export default StyleSheet.create({
     backgroundColor: "#eee",
     textAlign: "center",
   },
+    categoryBox: {
+    paddingVertical: 5,
+    height: 30,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: COLORS.darkBlue,
+    marginRight: 10,
+    backgroundColor: COLORS.darkBlue,
+  },
+  categoryBoxActive: {
+    backgroundColor: COLORS.background,
+  },
+  categoryText: {
+    color: COLORS.cardBackground,
+    fontWeight: "bold",
+    fontSize: 13,
+  },
+  categoryTextActive: {
+    color: COLORS.darkBlue,
+  },
 });
