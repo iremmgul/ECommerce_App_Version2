@@ -31,7 +31,6 @@ namespace ECommerceApi.Models
         [Column("image")]
         public string[] Image { get; set; } = [];
 
-        // Bir ürün birçok kullanıcı tarafından favorilenebilir
         public ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
         public ICollection<Cart> Carts { get; set; } = new List<Cart>();
 

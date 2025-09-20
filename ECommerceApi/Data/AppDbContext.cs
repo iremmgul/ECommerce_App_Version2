@@ -59,14 +59,14 @@ namespace ECommerceApi.Data
                 .HasForeignKey(c => c.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            
+            // ProductReview - Product ilişkisi
             modelBuilder.Entity<ProductReview>(entity =>
             {
-                entity.ToTable("product_review"); // tablo adı doğru olsun
+                entity.ToTable("product_review"); 
                 entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Id)
-                      .HasColumnName("id"); // burada küçük harfe mapliyoruz
+                      .HasColumnName("id"); 
 
                 entity.Property(e => e.ProductId)
                       .HasColumnName("product_id");
@@ -85,11 +85,21 @@ namespace ECommerceApi.Data
             });
 
 
-            // ProductReview - Product ilişkisi
+            // Category - Product ilişkisi
             modelBuilder.Entity<ProductCategory>()
             .HasKey(pc => new { pc.ProductId, pc.CategoryId });
 
+            modelBuilder.Entity<ProductCategory>()
+                .HasOne(pc => pc.Product)
+                .WithMany(p => p.ProductCategories)
+                .HasForeignKey(pc => pc.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<ProductCategory>()
+                .HasOne(pc => pc.Category)
+                .WithMany(c => c.ProductCategories)
+                .HasForeignKey(pc => pc.CategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
         }

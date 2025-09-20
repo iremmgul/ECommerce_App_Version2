@@ -4,7 +4,7 @@ import axios from "axios";
 import { API_URL } from "../constants/constantVariables";
 import useUserStore from "../store/userStore";
 import useCartStore from "../store/cartStore";
-import AsyncStorage from "@react-native-async-storage/async-storage"; 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CartButton = ({ productId, style }) => {
   const user = useUserStore((state) => state.userId);
