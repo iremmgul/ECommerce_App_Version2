@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity, ActivityIndicator, } from "react-native";
-import styles from "../../assets/styles/cart.styles"; 
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
+import styles from "../../assets/styles/cart.styles";
 import { useRouter } from "expo-router";
 import axios from "axios";
 import { API_URL } from "../../constants/constantVariables";
@@ -8,44 +15,43 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import imageMap from "../../constants/imageMap";
 import useUserStore from "../../store/userStore";
 import useCartStore from "../../store/cartStore";
-import CartButton from "../../components/CartButton"; 
+import QuantitySelector from "../../components/QuantitySelector";
 
 export default function Cart() {
   const router = useRouter();
   const user = useUserStore((state) => state.userId);
   const userId = user?.id;
 
-  const { cartVersion } = useCartStore(); 
+  const { cartVersion } = useCartStore();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (!userId) return;
-
-    const fetchCartItems = async () => {
-      try {
-        const token = await AsyncStorage.getItem("access_token"); 
-        if (!token) {
-          console.warn("Token bulunamadı!");
-          return;
-        }
-    
-        const res = await axios.get(`${API_URL}/cart/user/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`, 
-          },
-        });
-    
-        setCartItems(res.data);
-      } catch (err) {
-        console.error("Sepet ürünleri alınamadı:", err);
-      } finally {
-        setLoading(false);
+  const fetchCartItems = async () => {
+    try {
+      const token = await AsyncStorage.getItem("access_token");
+      if (!token) {
+        console.warn("Token bulunamadı!");
+        return;
       }
-    };
-    
 
-    fetchCartItems();
+      const res = await axios.get(`${API_URL}/cart/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setCartItems(res.data);
+    } catch (err) {
+      console.error("Sepet ürünleri alınamadı:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (userId) {
+      fetchCartItems();
+    }
   }, [userId, cartVersion]);
 
   if (loading) {
@@ -62,7 +68,7 @@ export default function Cart() {
         </Text>
       ) : (
         cartItems.map((item) => {
-          const product = item.product || item; 
+          const product = item.product || item;
           const imageFilename =
             product.image && product.image.length > 0 ? product.image[0] : null;
           const imageNumber = imageFilename
@@ -94,12 +100,18 @@ export default function Cart() {
                   </Text>
                   <Text style={styles.price}>{product.price} TL</Text>
                   <Text style={styles.rate}>
-                    ⭐ {product.rate ? parseFloat(product.rate).toFixed(1) : "0.0"}
+                    ⭐{" "}
+                    {product.rate
+                      ? parseFloat(product.rate).toFixed(1)
+                      : "0.0"}
                   </Text>
 
-                  <TouchableOpacity>
-                    <CartButton productId={item.id}/>
-                  </TouchableOpacity>
+                  {/* CartButton yerine QuantitySelector entegre edildi */}
+                  <QuantitySelector
+                    userId={userId}
+                    productId={product.id}
+                    initialQuantity={item.quantity}
+                  />
                 </View>
               </View>
             </TouchableOpacity>
@@ -109,4 +121,3 @@ export default function Cart() {
     </ScrollView>
   );
 }
-

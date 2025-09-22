@@ -1,3 +1,82 @@
+import React, { useState } from "react";
+import { TouchableOpacity, ActivityIndicator, Text, StyleSheet } from "react-native";
+import axios from "axios";
+import { API_URL } from "../constants/constantVariables";
+import useUserStore from "../store/userStore";
+import useCartStore from "../store/cartStore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const CartButton = ({ productId, style }) => {
+  const user = useUserStore((state) => state.userId);
+  const userId = user?.id;
+
+  const [loading, setLoading] = useState(false);
+  const { incrementCartVersion } = useCartStore();
+
+  const addToCart = async () => {
+    try {
+      setLoading(true);
+      const token = await AsyncStorage.getItem("access_token");
+      if (!token) return;
+
+      await axios.post(
+        `${API_URL}/cart`,
+        {
+          userId,
+          productId,
+          quantity: 1, // her basıldığında +1 artır
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      incrementCartVersion(); // global cart güncellemesi
+    } catch (err) {
+      console.error("Sepete ekleme hatası:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <ActivityIndicator size="small" color="gray" />;
+  }
+
+  return (
+    <TouchableOpacity
+      onPress={addToCart}
+      style={[styles.button, style]}
+    >
+      <Text style={styles.buttonText}>Add to Cart</Text>
+    </TouchableOpacity>
+  );
+};
+
+const styles = StyleSheet.create({
+  button: {
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 8,
+    height: 35,
+    width: 145,
+    alignItems: "center",
+    alignSelf: "flex-end",
+    backgroundColor: "#191970",
+  },
+  buttonText: {
+    color: "#ffffff",
+    fontWeight: "bold",
+    fontSize: 14,
+  },
+});
+
+export default CartButton;
+
+
+/*
 import React, { useEffect, useState } from "react";
 import { TouchableOpacity, ActivityIndicator, Text, StyleSheet } from "react-native";
 import axios from "axios";
@@ -111,6 +190,4 @@ const styles = StyleSheet.create({
 });
 
 export default CartButton;
-
-
-
+*/
